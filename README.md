@@ -1,3 +1,5 @@
+This is my final project of the object-oriented programming module in Udacity's Nanodegree C++ training.
+
 # System Monitor
 Linux system monitor - Display Linux Tasks. 
 
