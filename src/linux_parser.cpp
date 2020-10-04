@@ -420,3 +420,55 @@ long LinuxParser::UpTime(int pid) {
 
   return pidUpTime;
 }
+
+// Read and return the rss memory usage by the process id
+long int LinuxParser::Rss(int pid) {
+  int count = 0;
+
+  std::ifstream filestream(kProcDirectory + to_string(pid) + kSmaps);
+  if (filestream.is_open())
+  {
+    std::string line, value, varialeRss, rssValue;
+
+    while (std::getline(filestream, line))
+    {
+      std::istringstream iss(line);
+      if(line.find("Rss") != string::npos)
+      {
+        while (iss >> varialeRss >> rssValue)
+        {
+          count += std::stoi(rssValue);
+          break;
+        }
+      }
+    }
+  }
+
+  return count;
+}
+
+// Read and return the rss memory usage by the process id
+long int LinuxParser::Pss(int pid) {
+  int count = 0;
+
+  std::ifstream filestream(kProcDirectory + to_string(pid) + kSmaps);
+  if (filestream.is_open())
+  {
+    std::string line, value, varialeRss, pssValue;
+
+    while (std::getline(filestream, line))
+    {
+      std::istringstream iss(line);
+      if(line.find("Pss") != string::npos)
+      {
+        while (iss >> varialeRss >> pssValue)
+        {
+          count += std::stoi(pssValue);
+          break;
+        }
+      }
+    }
+  }
+
+  return count;
+}

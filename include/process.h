@@ -11,6 +11,8 @@ public:
   std::string Command();
   float CpuUtilization();
   std::string Ram();
+  long int Rss();
+  long int Pss();
   long int UpTime();
   bool operator<(Process const &a) const;
 
